@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  psql:
+    image: psql
+    env_file: .env
+    build: ./psql
+    container_name: psql
+    ports:
+      - '5432:5432'
+    networks:
+      - noteapptwork
+    volumes:
+      - /opt/psql/psql/logs/:/opt/psql/logs
+      - /opt/psql/psql/data:/var/lib/psql/data
+networks:
+  noteapptwork:
+    driver: bridge   
+    ipam:
+      driver: default
