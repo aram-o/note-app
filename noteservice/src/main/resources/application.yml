@@ -17,3 +17,6 @@ spring:
         hibernate:
             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
             dialect: org.hibernate.dialect.PostgreSQL95Dialect
+            
+signing:
+    key: "345345fsdfsf5345"
