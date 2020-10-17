@@ -1,19 +1,29 @@
 version: '3.5'
 services:
-  psql:
-    image: psql
-    env_file: .env
-    build: ./psql
-    container_name: psql
-    ports:
-      - '5432:5432'
-    networks:
-      - noteapptwork
-    volumes:
-      - /opt/psql/psql/logs/:/opt/psql/logs
-      - /opt/psql/psql/data:/var/lib/psql/data
+    psql:
+        image: psql
+        env_file: .env
+        build: ./psql
+        container_name: psql
+        ports:
+            - '5432:5432'
+        networks:
+            - noteapptwork
+        volumes:
+            - /opt/psql/psql/logs/:/opt/psql/logs
+            - /opt/psql/psql/data:/var/lib/psql/data
+    noteservice:
+        image: noteservice
+        env_file: .env
+        build: ./noteservice
+        ports:
+            - '8080:8080'
+        networks:
+            - noteapptwork
+        depends_on:      
+            - psql
 networks:
-  noteapptwork:
-    driver: bridge   
-    ipam:
-      driver: default
+    noteapptwork:
+        driver: bridge   
+        ipam:
+            driver: default
