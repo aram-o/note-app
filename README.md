@@ -69,5 +69,7 @@ curl -X GET \
 
 # ETL service
 Reads all notes from database periodically and saves to JSON.
+
 To test run mvn clean spring-boot:run
+
 It will save all notes from AWS RDS to local JSON file.
