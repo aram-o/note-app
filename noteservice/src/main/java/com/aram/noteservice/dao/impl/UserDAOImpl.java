@@ -21,14 +21,14 @@ public class UserDAOImpl implements UserDAO {
     
     /**
      * Method to return particular user object by given id.
-     * @param id
+     * @param email
      * @return
      */
     @Override
-    public Optional<User> getUserById(
-        Long id
+    public Optional<User> getUserByEmail(
+        String email
     ) {
-        Optional<User> user = this.userRepository.findById(id);
+        Optional<User> user = this.userRepository.findOneByEmail(email);
         return user;
     }
     

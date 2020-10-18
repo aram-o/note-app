@@ -13,6 +13,21 @@ public final class ResponseUtil {
 
     private ResponseUtil() {
     }
+    
+    /**
+     * Wrap the optional into a {@link ResponseEntity} with an
+     * {@link HttpStatus#OK} status, or if it's empty, it returns a
+     * {@link ResponseEntity} with {@link HttpStatus#NOT_FOUND}.
+     *
+     * @param <X> type of the response
+     * @param maybeResponse response to return if present
+     * @param status
+     * @return response containing {@code maybeResponse} if present or
+     * {@link HttpStatus#NOT_FOUND}
+     */
+    public static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse, HttpStatus status) {
+        return wrapOrNotFound(maybeResponse, null, status);
+    }
 
     /**
      * Wrap the optional into a {@link ResponseEntity} with an
@@ -25,7 +40,7 @@ public final class ResponseUtil {
      * {@link HttpStatus#NOT_FOUND}
      */
     public static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse) {
-        return wrapOrNotFound(maybeResponse, null);
+        return wrapOrNotFound(maybeResponse, null, HttpStatus.OK);
     }
 
     /**
@@ -36,11 +51,12 @@ public final class ResponseUtil {
      * @param <X> type of the response
      * @param maybeResponse response to return if present
      * @param header headers to be added to the response
+     * @param status
      * @return response containing {@code maybeResponse} if present or
      * {@link HttpStatus#NOT_FOUND}
      */
-    public static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse, HttpHeaders header) {
-        return maybeResponse.map(response -> ResponseEntity.ok().headers(header).body(response))
+    public static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse, HttpHeaders header, HttpStatus status) {
+        return maybeResponse.map(response -> ResponseEntity.status(status).headers(header).body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 

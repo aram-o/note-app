@@ -9,6 +9,6 @@ import java.util.Optional;
  */
 public interface UserDAO {
     
-    Optional<User> getUserById(Long id);
+    Optional<User> getUserByEmail(String email);
     
 }

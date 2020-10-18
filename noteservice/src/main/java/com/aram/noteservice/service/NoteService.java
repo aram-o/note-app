@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface NoteService {
     
     Optional<NoteDTO> getNoteById(Long id);
-    List<NoteDTO> getAllNotes();
+    List<NoteDTO> getAllNotesByUserEmail(String userEmail);
     Optional<NoteDTO> updateNote(NoteUpdateDTO note);
     Optional<NoteDTO> createNote(NoteCreateDTO note);
     boolean deleteNoteById(Long id);

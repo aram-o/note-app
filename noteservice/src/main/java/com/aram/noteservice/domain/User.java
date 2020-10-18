@@ -31,7 +31,7 @@ public class User implements Serializable {
     private Long id;
         
     @Email()
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     
     @Size(min = 8)

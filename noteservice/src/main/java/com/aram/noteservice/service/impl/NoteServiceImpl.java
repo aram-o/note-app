@@ -59,11 +59,12 @@ public class NoteServiceImpl implements NoteService {
 
     /**
      * Get all notes.
+     * @param userEmail
      * @return
      */
     @Override
-    public List<NoteDTO> getAllNotes() {
-        List<Note> noteList = this.noteDAO.getAllNotes();
+    public List<NoteDTO> getAllNotesByUserEmail(String userEmail) {
+        List<Note> noteList = this.noteDAO.getAllNotesByUserEmail(userEmail);
 //        If empty or null do not continue.
         if(noteList == null || noteList.isEmpty()) {
             return new ArrayList<>();
@@ -122,7 +123,7 @@ public class NoteServiceImpl implements NoteService {
         
         NoteDTO noteDTO = this.noteMapper.toNoteDTO(note);
         
-        Optional<User> user = this.userDAO.getUserById(note.getUserId());
+        Optional<User> user = this.userDAO.getUserByEmail(note.getUserEmail());
         if(user.isPresent()) {
             UserDTO userDTO = this.userMapper.toUserDTO(user.get());
             noteDTO.setUser(userDTO);

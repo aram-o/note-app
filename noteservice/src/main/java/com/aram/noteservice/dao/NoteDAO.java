@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface NoteDAO {
     
     Optional<Note> getNoteById(Long id);
-    List<Note> getAllNotes();
+    List<Note> getAllNotesByUserEmail(String userEmail);
     Optional<Note> saveNote(Note note);
-    boolean deleteById(Long id);
+    Boolean deleteById(Long id);
     
 }

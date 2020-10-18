@@ -29,8 +29,8 @@ public class Note implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
     
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "user_email")
+    private String userEmail;
     
     @Size(max = 50)
     @Column(name = "title")

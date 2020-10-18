@@ -24,6 +24,7 @@ public class NoteDAOImpl implements NoteDAO {
     /**
      * Method to return particular note object by given id.
      * @param id
+     * @param userEmail
      * @return
      */
     @Override
@@ -33,17 +34,18 @@ public class NoteDAOImpl implements NoteDAO {
             return Optional.empty();
         }
         
-        Optional<Note> note = this.noteRepository.findById(id);
+        Optional<Note> note = this.noteRepository.findOneById(id);
         return note;
     }
 
     /**
      * Method to return all notes.
+     * @param userEmail
      * @return
      */
     @Override
-    public List<Note> getAllNotes() {
-        List<Note> noteList = this.noteRepository.findAll();
+    public List<Note> getAllNotesByUserEmail(String userEmail) {
+        List<Note> noteList = this.noteRepository.findAllByUserEmail(userEmail);
         return noteList;
     }
 
@@ -76,7 +78,7 @@ public class NoteDAOImpl implements NoteDAO {
      * @return
      */
     @Override
-    public boolean deleteById(Long id) {
+    public Boolean deleteById(Long id) {
 //        If id is null do not continue.
         if( id == null ) {
             return false;
