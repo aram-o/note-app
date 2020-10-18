@@ -6,7 +6,7 @@ Run docker-compose up if you run locally.
 
 # Note service
 To deploy locally use docker-compose up --build -d noteservice
-The bellow counted examples will use already deployed service on AWS which uses RDS on AWS.
+The below counted examples will use already deployed service on AWS which uses RDS.
 
 1. To get authentication token use:
  curl -X POST \
@@ -67,3 +67,7 @@ curl -X GET \
   -H 'Authorization: Bearer The access token' \
   -H 'cache-control: no-cache'
 
+# ETL service
+Reads all notes from database periodically and saves to JSON.
+To test run mvn clean spring-boot:run
+It will save all notes from AWS RDS to local JSON file.
