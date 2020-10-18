@@ -5,7 +5,7 @@ spring:
         name: noteservice
     datasource:
         url: '${PSQL_URI:jdbc:postgresql://psql:5432/example_db}'
-        username: '${PSQL_DB_USER:dbuser}'
+        username: '${PSQL_DB_USER:noteappuser}'
         password: '${PSQL_DB_PASSWORD:password}'
         platform: POSTGRESQL
         testWhileIdle: true
